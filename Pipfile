@@ -18,8 +18,6 @@ flask = "*"
 matplotlib = "*"
 datetime = "*"
 flask-sqlalchemy = "*"
-nb-black = "*"
-lab-black = "*"
 gunicorn = "*"
 
 [requires]
