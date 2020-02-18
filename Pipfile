@@ -1,0 +1,26 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+blackcellmagic = "*"
+v = {editable = true,version = "*"}
+black = "*"
+
+[packages]
+sqlalchemy = "*"
+pandas = "*"
+numpy = "*"
+black = "*"
+ipykernel = "*"
+flask = "*"
+matplotlib = "*"
+datetime = "*"
+flask-sqlalchemy = "*"
+nb-black = "*"
+lab-black = "*"
+gunicorn = "*"
+
+[requires]
+python_version = "3.7"

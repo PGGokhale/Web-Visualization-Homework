@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Honolulu Climate</title>
+
+    </head>
+    <body>
+        <h1><b>Welcome to My Climate App!</b></h1>
+        <p><img src="../static/honolulu-oahu-hawaii-106283185.jpg" height=250 width=1200 ></p>
+        <p>If you've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii then this App will
+        help with your trip planning, by providing you with some climate analysis on the area.</p>
+        <p>Pages you will see in this app are as below</p>
+        <p><a href="http://127.0.0.1:5000/api/v1.0/precipitation">Provides information about Precipitation </a></p>
+        <p><a href="http://127.0.0.1:5000/api/v1.0/stations">Provides information about the Stations</a></p>
+        <p><a href="http://127.0.0.1:5000/api/v1.0/tobs">Provides information about Temperatures</a></p>
+        <p>In the text box you can query for historic temperature data from a start date or between a start and end date</p>
+
+        <form action="/api/v1.0" target="_blank" method="GET">
+            Start Date:<br>
+            <input type="text" name="start" value="2016-08-24">
+            <br>
+            End Date:<br>
+            <input type="text" name="end" value="2017-08-23">
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+</body>
+</html>
