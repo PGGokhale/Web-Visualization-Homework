@@ -81,17 +81,6 @@ def render_plot1():
 
 @app.route("/data")
 def render_data():
-    # cols = ["date", "prcp", "tobs"]
-    # Precipitations = Measurement.query.filter(
-    #     and_(
-    #         Measurement.date > datetime.datetime(2016, 8, 23),
-    #         Measurement.date <= datetime.datetime(2017, 8, 23),
-    #     )
-    # )
-    # result1 = [{col: getattr(Precip, col) for col in cols} for Precip in Precipitations]
-    # result = [[r["date"], r["prcp"], r["tobs"]] for r in result1]
-    # df=pd.DataFrame(result, columns=['Date', 'Rainfall', 'Temperature'])
-    # table = df.to_html()
 
     items = db.session.query(
         Measurement.prcp,
@@ -125,24 +114,6 @@ def render_data():
     )
     table = df_rainfall.to_html()
     return render_template("pandas.html",table=table)
-   
-
-    
-
-
-
-
-
-
-@app.route("/api/v1.0/stations")
-def show_stations():
-    station_names = Station.query.all()
-    cols = ["name"]
-    result = [{col: getattr(name, col) for col in cols} for name in station_names]
-    return jsonify(result=result)
-
-
-
 
 
 def validate(date_text):
@@ -193,4 +164,4 @@ def filter_temp_by_date():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
