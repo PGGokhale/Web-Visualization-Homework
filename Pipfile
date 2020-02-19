@@ -19,6 +19,7 @@ matplotlib = "*"
 datetime = "*"
 flask-sqlalchemy = "*"
 gunicorn = "*"
+plotly = "*"
 
 [requires]
 python_version = "3.7"

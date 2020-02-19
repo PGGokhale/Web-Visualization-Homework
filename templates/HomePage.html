@@ -1,17 +1,54 @@
 <html>
     <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="custom.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
         <title>Honolulu Climate</title>
 
     </head>
     <body>
+      
+      
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Plan Your Trip</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Plots
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="http://127.0.0.1:5000/temperature">Temperature</a>
+                <a class="dropdown-item" href="http://127.0.0.1:5000/precipitation">Precipitation</a>
+              </div>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Comparision <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:5000/data">Data</a>
+            </li>
+            
+            
+          </ul>
+
+        </div>
+      </nav>
+      <div class="container-fluid">
+       
         <h1><b>Welcome to My Climate App!</b></h1>
-        <p><img src="../static/honolulu-oahu-hawaii-106283185.jpg" height=250 width=1200 ></p>
+        <!-- <p><img src="../static/honolulu-oahu-hawaii-106283185.jpg" height=250 width=1200 ></p> -->
         <p>If you've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii then this App will
         help with your trip planning, by providing you with some climate analysis on the area.</p>
-        <p>Pages you will see in this app are as below</p>
-        <p><a href="http://127.0.0.1:5000/api/v1.0/precipitation">Provides information about Precipitation </a></p>
-        <p><a href="http://127.0.0.1:5000/api/v1.0/stations">Provides information about the Stations</a></p>
-        <p><a href="http://127.0.0.1:5000/api/v1.0/tobs">Provides information about Temperatures</a></p>
+        
         <p>In the text box you can query for historic temperature data from a start date or between a start and end date</p>
 
         <form action="/api/v1.0" target="_blank" method="GET">
@@ -23,5 +60,7 @@
             <br><br>
             <input type="submit" value="Submit">
         </form>
+      </div>
+      
 </body>
 </html>

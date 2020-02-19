@@ -4,6 +4,9 @@ import datetime
 import sqlalchemy
 from sqlalchemy import and_, func
 from sqlalchemy.orm import Session
+from plot import plot
+from plot1 import plot1
+import pandas as pd
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///Resources/hawaii.sqlite"
@@ -68,19 +71,67 @@ def calc_temps(start_date, end_date):
 def home():
     return render_template("HomePage.html")
 
+@app.route("/temperature")
+def render_plot():
+    return render_template("temperature.html", plot_data=plot())
 
-@app.route("/api/v1.0/precipitation")
-def show_all():
-    cols = ["date", "prcp"]
-    Precipitations = Measurement.query.filter(
+@app.route("/precipitation")
+def render_plot1():
+    return render_template("precipitation.html", plot_data=plot1())
+
+@app.route("/data")
+def render_data():
+    # cols = ["date", "prcp", "tobs"]
+    # Precipitations = Measurement.query.filter(
+    #     and_(
+    #         Measurement.date > datetime.datetime(2016, 8, 23),
+    #         Measurement.date <= datetime.datetime(2017, 8, 23),
+    #     )
+    # )
+    # result1 = [{col: getattr(Precip, col) for col in cols} for Precip in Precipitations]
+    # result = [[r["date"], r["prcp"], r["tobs"]] for r in result1]
+    # df=pd.DataFrame(result, columns=['Date', 'Rainfall', 'Temperature'])
+    # table = df.to_html()
+
+    items = db.session.query(
+        Measurement.prcp,
+        Measurement.tobs,
+        Measurement.station,
+        Station.name,
+        Station.latitude,
+        Station.longitude,
+        Station.elevation,
+    ).filter(Measurement.station == Station.station)\
+    .filter(
         and_(
             Measurement.date > datetime.datetime(2016, 8, 23),
             Measurement.date <= datetime.datetime(2017, 8, 23),
         )
+    ).all()
+
+    df_rainfall = pd.DataFrame(
+        [
+            {
+                "Rainfall": item[0],
+                "Temperature":item[1],
+                "Station": item[2],
+                "Name": item[3],
+                "Latitude": item[4],
+                "Longitude": item[5],
+                "Elevation": item[6],
+            }
+            for item in items
+        ]
     )
-    result1 = [{col: getattr(Precip, col) for col in cols} for Precip in Precipitations]
-    result = [{r["date"]: r["prcp"]} for r in result1]
-    return jsonify(result=result)
+    table = df_rainfall.to_html()
+    return render_template("pandas.html",table=table)
+   
+
+    
+
+
+
+
 
 
 @app.route("/api/v1.0/stations")
@@ -91,18 +142,7 @@ def show_stations():
     return jsonify(result=result)
 
 
-@app.route("/api/v1.0/tobs")
-def show_temperature():
-    cols = ["date", "tobs"]
-    Temperatures = Measurement.query.filter(
-        and_(
-            Measurement.date > datetime.datetime(2016, 8, 23),
-            Measurement.date <= datetime.datetime(2017, 8, 23),
-        )
-    )
-    result1 = [{col: getattr(Temp, col) for col in cols} for Temp in Temperatures]
-    result = [{r["date"]: r["tobs"]} for r in result1]
-    return jsonify(result=result)
+
 
 
 def validate(date_text):
