@@ -69,7 +69,7 @@ def calc_temps(start_date, end_date):
 
 @app.route("/")
 def home():
-    return render_template("HomePage.html")
+    return render_template("index.html")
 
 @app.route("/temperature")
 def render_plot():
